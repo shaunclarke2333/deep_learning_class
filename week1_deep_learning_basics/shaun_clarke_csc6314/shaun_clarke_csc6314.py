@@ -75,7 +75,7 @@ def load_and_prep_data() -> Tuple:
     # So after unsqueeze we would have (100, 1)
     # So i see hwo quickly this can be a problem and cause errors or maybe not training the model correctly.
     X_train_tensor: torch.float32 = torch.tensor(X_train_scaled).float()
-    X_test_tensor: torch.float32 = torch.tensor(X_test_scaled)
+    X_test_tensor: torch.float32 = torch.tensor(X_test_scaled).float()
     Y_train_tensor: torch.float32 = torch.tensor(Y_train).float().unsqueeze(1)
     Y_test_tensor: torch.float32 = torch.tensor(Y_test).float().unsqueeze(1)
 
@@ -93,5 +93,97 @@ def load_and_prep_data() -> Tuple:
     # print(type(input_dim))
 
 
-# This class inherots from the nn.module class.
-# This will allow us to implement logistic regression as a neural network.
+
+# This class implement's logistic regression as a neural network.
+class LinearRegressionML(nn.Module):
+    """
+    This class inherits from the nn.module class.
+    This class implements logistic regression as a neural network
+    Using nn.linear followed a sigmoid function that outputs pass through to produce probabilities.
+    There are no hidden layers and this limits the model to only being able to learn a linear decision boundary.
+    """
+
+    def __init__ (self, input_dim):
+        """
+        Using super to call the constructor of the parent class and initialize it
+        so the LinearRegressionML subclass can use it's methods.
+        """ 
+        super().__init__()
+
+        # Instantiating the linear layer with nn.linear with the number of dimensions input and number of outputs
+        self.layer = nn.Linear(input_dim, 1)
+        # Instantiating the sigmoid activation function that wil be use to convert linear layer outputs to a probability between 0 and 1.
+        self.sigmoid: nn.Sigmoid = nn.Sigmoid()
+
+    # Defining the forward pass method that will define how data will move through the model and return an output.
+    def forward(self, x: torch.tensor) -> Tuple:
+        """
+        This method simulates the data flowing through the network.
+        The shape of x coming into nn.linear is (N, D) meaning number of rows\samples, number of features\columns
+        nn.linear output shape is (N, 1) 1 value(logit) per row (N)
+        That output is then passed into the sigmoid function which squashes the values between 0 and 1
+        but the shape remmains the same (N, 1)
+
+        returns (N, 1)
+        """
+
+        # Passing the input dimensions to the linear layer
+        out = self.layer(x)
+        # Passing the linear layer output into the sigmoid activation function
+        out = self.sigmoid(out)
+
+        return out
+        
+
+# This class is the deep learning multi layer perceptron
+class DeepMLP(nn.Module):
+    """
+    This class inherits from the nn.module class.
+    This class implements a deep multi layer perceptron using nn.sequential which acts like a container
+    that lets you stack layers in order(nn.linear, ReLU, Linear, Sigmoid) so that data can flow through them automatically
+    which simplifies the forward method compared to the LinearRegressionModel.
+    """
+
+    def __init__ (self, input_dim):
+        """
+        Using super to call the constructor of the parent class and initialize it
+        so the DeepMLP subclass can use it's methods.
+        """ 
+        super().__init__()
+        """
+        Initializing nn.Sequential to stack the MLP layers automatically, with varying widths 128 -> 64 -> 32.
+        This decreaing layer sizes forms a funnel shape architecture. This architecture allows the model to start wide
+        capture lots of feature combinations and gradually reduce by focusing on important ptterns as it moves through the layers.
+        This allows the model to learn hierarchical feature representation in an efficient way. 
+
+        """
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, 128),
+            nn.ReLU(),
+
+            nn.Linear(128, 64),
+            nn.ReLU(),
+
+            nn.Linear(64, 32),
+            nn.ReLU(),
+
+            nn.Linear(32, 16),
+            nn.ReLU(),
+
+            nn.Linear(16, 1),
+            nn.Sigmoid()
+        )
+
+    # Defining the forward pass method that will pass our training data into self.net.
+    def forward(self, x: torch.tensor):
+        
+        return self.net(x)
+
+
+
+
+
+
+        
+
+

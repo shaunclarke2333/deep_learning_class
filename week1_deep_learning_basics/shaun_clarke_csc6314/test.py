@@ -15,6 +15,40 @@ from sklearn.preprocessing import StandardScaler # For standardizing ML features
 from sklearn.metrics import roc_auc_score # This computes the model's ability to discriminate between classes
 import matplotlib.pyplot as plt
 
-from shaun_clarke_csc6314 import load_and_prep_data
+from shaun_clarke_csc6314 import load_and_prep_data, LinearRegressionML, DeepMLP
 
-load_and_prep_data()
+# Testing load and prep data
+X_train_tensor, X_test_tensor, Y_train_tensor, Y_test_tensor, input_dim = load_and_prep_data()
+
+# Displaying values for X_train_tensor, X_test_tensor, Y_train_tensor, Y_test_tensor, input_dim
+print("=" * 50)
+print(f"Displaying values for X_train_tensor, X_test_tensor, Y_train_tensor, Y_test_tensor, input_dim")
+print(f"X_train_tensor: {X_train_tensor}")
+print(f"X_test_tensor: {X_test_tensor}")
+print(f"Y_train_tensor: {Y_train_tensor}")
+print(f"Y_test_tensor: {Y_test_tensor}")
+print(f"input_dim: {input_dim}")
+print("=" * 50)
+
+# Testing the model after loading data
+print("=" * 50)
+print(f"Testing the model:")
+print(f"Expected Output")
+print(f"X_train_tensor.shape like (N, D)")
+print(f"X_train_tensor.shape like (N, 1)")
+model = LinearRegressionML(input_dim)
+print(model)
+print(X_train_tensor.shape)
+print(Y_train_tensor.shape)
+print("=" * 50)
+
+# Testin one forward pass
+print("=" * 50)
+print(f"Testin one forward pass:")
+print(f"Expected Output")
+print(f"output shape should be (5, 1)")
+print(f"output values should be between 0 and 1")
+sample_output = model(X_train_tensor[:5])
+print(f"Output shape: {sample_output.shape}")
+print(f"Output values: {sample_output}")
+print("=" * 50)
