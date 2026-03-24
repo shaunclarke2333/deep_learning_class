@@ -20,6 +20,7 @@ import torch.optim as optim
 # Batches make training faster and is less memory intensive
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
+import time
 import sklearn
 # The dataset i will be working with
 from sklearn.datasets import fetch_california_housing
