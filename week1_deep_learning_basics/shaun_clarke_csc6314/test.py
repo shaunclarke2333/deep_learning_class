@@ -15,7 +15,7 @@ from sklearn.preprocessing import StandardScaler # For standardizing ML features
 from sklearn.metrics import roc_auc_score # This computes the model's ability to discriminate between classes
 import matplotlib.pyplot as plt
 
-from shaun_clarke_csc6314 import load_and_prep_data, LinearRegressionML, DeepMLP
+from shaun_clarke_csc6314 import load_and_prep_data, LogisticRegressionML, DeepMLP, train_model, evaluate_model
 
 # Testing load and prep data
 X_train_tensor, X_test_tensor, Y_train_tensor, Y_test_tensor, input_dim = load_and_prep_data()
@@ -36,13 +36,13 @@ print(f"Testing the model:")
 print(f"Expected Output")
 print(f"X_train_tensor.shape like (N, D)")
 print(f"X_train_tensor.shape like (N, 1)")
-model = LinearRegressionML(input_dim)
+model = DeepMLP(input_dim)
 print(model)
 print(X_train_tensor.shape)
 print(Y_train_tensor.shape)
 print("=" * 50)
 
-# Testin one forward pass
+# Testin one forward pass sanity check
 print("=" * 50)
 print(f"Testin one forward pass:")
 print(f"Expected Output")
@@ -52,3 +52,11 @@ sample_output = model(X_train_tensor[:5])
 print(f"Output shape: {sample_output.shape}")
 print(f"Output values: {sample_output}")
 print("=" * 50)
+
+# training the model
+train_model(model, X_train_tensor, Y_train_tensor)
+
+# print(train_model(model, X_train_tensor, Y_train_tensor))
+print(evaluate_model(model, X_test_tensor, Y_test_tensor))
+
+
