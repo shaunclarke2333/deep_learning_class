@@ -89,9 +89,32 @@ class AnimalCNN(nn.Module):
             nn.BatchNorm2d(128),
             nn.ReLU(),
 
+            # Using AdaptiveAvgPool2d which is like saying how much of this feature exists in the image overall
             nn.AdaptiveAvgPool2d((1,1))
-
         )
+
+        # Defining the classifier head
+        self.classifier = nn.sequential(
+            # Randomly zero out 30% of the neurons only during training oof course.
+            nn.Dropout (0.3),
+            nn.Linear(128, num_classes)
+        )
+
+
+        # Defining the forward pass through the network
+        def forward(self, x: torch.tensor) -> torch.tensor:
+            """
+            This method defines the forward pass through the CNN
+            """
+
+            x = self.features(x)
+            x = torch.flatten(x, 1)
+            x = self.classifier(x)
+
+            return x
+
+
+
 
 
 
