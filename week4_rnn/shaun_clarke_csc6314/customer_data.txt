@@ -1,0 +1,86 @@
+great service 0
+delivery was late 1
+totally unhappy 1
+the staff was helpful 0
+very slow shipping 1
+awesome experience 0
+i love this 0
+terrible quality 1
+highly recommend 0
+worst purchase ever 1
+fast and easy 0
+not what i expected 1
+amazing support 0
+it broke immediately 1
+very satisfied 0
+waiting too long 1
+perfect 0
+complete waste 1
+really good 0
+bad experience 1
+hard to setup 1
+difficult to install 1
+setup was easy 0
+simple to use 0
+confusing instructions 1
+worked perfectly 0
+did not work 1
+dont like it 1
+i dont like this 1
+not good 1
+never again 1
+not happy 1
+dont recommend 1
+didnt work 1
+not helpful 1
+no help at all 1
+fantastic 0
+horrible 1
+excellent 0
+garbage 1
+highly impressed 0
+disappointed 1
+best ever 0
+wasted my money 1
+very intuitive 0
+hard to understand 1
+flawless 0
+broken 1
+efficient 0
+clunky 1
+smooth 0
+rough 1
+brilliant 0
+awful 1
+cheaply made 1
+high quality 0
+frustrating 1
+helpful 0
+useless 1
+useful 0
+not worth it 1
+value for money 0
+too expensive 1
+great price 0
+faulty 1
+reliable 0
+fast response 0
+took too long 1
+very happy 0
+sad service 1
+superb 0
+poor 1
+outstanding 0
+miserable 1
+resolved my issue 0
+problem not solved 1
+exceeded expectations 0
+below average 1
+will buy again 0
+will never return 1
+exactly what i needed 0
+missing parts 1
+shipped fast 0
+arrived damaged 1
+intuitive interface 0
+confusing layout 1
