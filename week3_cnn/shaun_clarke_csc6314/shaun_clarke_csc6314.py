@@ -61,7 +61,7 @@ IDX_TO_CLASS: Dict[int, str] = {
 
 # Defining hyperparameters
 BATCH_SIZE: int  = 64
-NUM_EPOCHS: int  = 100
+NUM_EPOCHS: int  = 1000
 LEARNING_RATE: float = 1e-3
 NUM_CLASSES: int = 4
 # Where the trained model weights will be saved
