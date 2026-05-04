@@ -654,7 +654,7 @@ def main():
  
     tutor = TutorChatbot(hf_api_key)
  
-    # Default knowledge base directory — change this to wherever your documents live
+    # Default knowledge base directory
     data_dir = "./documents_project7/"
  
     if not os.path.exists(data_dir):
